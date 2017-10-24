@@ -27,8 +27,7 @@ Lack of technical managers | No staff in GA can manage the PID Svc | inability t
 
 ## System components
 
-![AGLDWG PID Service runbook component diagram]
-(AGLDWG-PID-Service-runbook-component-diagram.png)  
+![AGLDWG PID Service runbook component diagram](AGLDWG-PID-Service-runbook-component-diagram.png)  
 
 Figure 1: GA PID Service runbook component diagram  
 
