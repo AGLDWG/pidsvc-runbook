@@ -27,14 +27,14 @@ Lack of technical managers | No staff in GA can manage the PID Svc | inability t
 
 ## System components
 
-![GA PID Service runbook component diagram]
-(GA-PID-Service-runbook-component-diagram.png)  
+![AGLDWG PID Service runbook component diagram]
+(AGLDWG-PID-Service-runbook-component-diagram.png)  
 
 Figure 1: GA PID Service runbook component diagram  
 
 The PID Svc system consists of the following major components:
 
-* A **DNS entry** for *pid.geoscience.gov.au*
+* A **DNS entry** for *x.data.gov.au*
     * pointing via an A Record to a floating IP address
 * A **floating IP address**
     * in the form of an AWS Elastic IP product
@@ -48,20 +48,19 @@ The server consists of the following internal components:
 
 * **Apache Web Server Program**
     * version 2.4
-    * all custom configuration in the VHosts file /etc/apache2/sites-enabled/pid.geoscience.gov.au.conf
-        * a copy of this file, as of 2017-06-21, is stored in this repo as pid.geoscience.gov.au.conf-2017-06-21.txt
-        * this file is part of the backup routines for the PID Svc Server
+    * all custom configuration in the VHosts files in /etc/apache2/sites-enabled/
+        * copies of these files are backed up to the backup repo
 * **Tomcat Web Server Program**
     * version 7
-    * the PID Svc application itself is a WAR file application (a Tomcat site)
-    * connection details for the PID Svc application to the Postgres DB are contained in %TOMCAT_HOME%/Catalina/localhost/pidsvc.xml
+    * the PID Svc application itself is a WAR file application (a Tomcat site), multiple instances of which are run, one for each AGIFT-based subdomain
+    * connection details for the PID Svc applications to the Postgres DBs are contained in %TOMCAT_HOME%/Catalina/localhost/
 * **PID Svc WAR** 
     * this is the PID Svc application created by CSIRO, online at <https://cgsrv1.arrc.csiro.au/swrepo/PidService/jenkins/trunk/pidsvc-latest.war>
     * hosted by the Tomcat Server program
 * **Postgres Database Server program**
     * version 9.3 (default for the Linux server version)
-* **Postgres DB "pidsvc"**
-    * a database hosted by the Postgres Database Server program
+* **Postgres DB**
+    * databases hosted by the Postgres Database Server program
     * constructed using the CSIRO build script <https://www.seegrid.csiro.au/subversion/PID/trunk/pidsvc/src/main/db/postgresql.sql>
     
 
@@ -69,25 +68,25 @@ The server consists of the following internal components:
 The following systems are required for PID Svc operation:
 
 * **DNS**
-    * the domain name pid.geoscience.gov.au is governed by Web Ops
+    * the domain name x.data.gov.au is governed by the Department of Finance
     
 
-* **AWS account**
-    * Where: the majority of the PID Svc systems sits within the 'corporate-data' AWS account (no. 189606807030)
-    * Who: the account is managed by Scientific Data, particularly Andy Marshall
+* **NECTAR account**
+    * Where: the majority of the PID Svc systems sits within the 'AGLDWG' NECTAR account
+    * Who: the account is managed by the AGLDWG. Access accounts held by Nicholas Car & Armin Haller
 
 
-* **PID Service instance** -- at <http://pid.geoscience.gov.au>
-    * Where: hosted on a single AWS Virtual Machine, machine name 'pid-prod', Elastic IP address: 52.63.174.100
+* **PID Service instance** -- at <http://pid.data.gov.au>
+    * Where: hosted on a single NECTAR Virtual Machine, machine name 'pid-prod7', Elastic IP address: 52.63.174.100
 	* Who: the machine can be accessed by the Catalogue team or Cloud Enablement
 	* How: access details:
 	    * PID Svc GUI
-		    * UI webpage: <http://pid.geoscience.gov.au/pidsvc>
+		    * UI webpage: <http://pid.data.gov.au/pidsvc>
 		    * user: pidsvcadmin
 		    * pwd: (see custodian)
         * pid-prod VM via SSH
             * user: ubuntu
-            * pwd: access key 'linkeddata.ppk' (see custodian)
+            * pwd: access key 'nectar.ppk' (see custodian)
 
 
 ## Installation / Documentation
