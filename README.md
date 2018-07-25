@@ -1,3 +1,5 @@
+*This repository is now deprecated, please see <https://github.com/AGLDWG/pid-proxy>*
+
 # Run Book / System Operation Manual
 This repository contains information about how to operate the Ausralian Government Linked Data Working Group' Persistent ID Service (PID Svc) managing subdomains at *.data.gov.au, for example environment.data.gov.au.
 
